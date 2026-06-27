@@ -21,7 +21,12 @@ var userSchema = new mongoose.Schema({
     profiphoto:{
       type:String,
       default:"https://img.magnific.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=1480"
-    }
+    },
+    isprivate: {
+      type: Boolean,
+      default: false,
+    },
+
 });
 
 //Export the model
