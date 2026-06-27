@@ -1,6 +1,7 @@
 
 const ImageKit = require('@imagekit/nodejs');
 const postModle = require('../models/post.models');
+const LikeModel = require('../models/like.model');
 
 // const { toFile } = require('@imagekit/nodejs');
 
@@ -88,5 +89,55 @@ const getonepost=async(req,res)=>{
 
 }
 
+const isliked=async(req,res)=>{
+
+  const userid=req.user.id;
+  const postid=req.body;
+
+
+  const ispostexist=await postModle.findById(postid);
+
+  if(!ispostexist){
+    return res.status(404).json({
+      massage:"this post is not exist"
+    })
+  }
+
+
+  const islikeexist=await LikeModel.findOne({user:userid,post:postid});
+  if(islikeexist){
+     const data=await LikeModel.findByIdAndUpdate(islikeexist._id);
+
+
+    return res.status(201).json({
+      message: "Post unliked successfully."
+      
+    })
+   }
+   else{
+
+    const data= await LikeModel.create({
+      user:userid,
+      post:postid,
+      islike:true  
+    })
+    return res.status(200).json({
+      massage:"Post liked successfully.",
+      data
+    })
+   }
+   
+  }
+
+    
+
+
+
+   
+
+
+
+
+
   
-module.exports = { createpost, getpost, getonepost };
+module.exports = { createpost, getpost, getonepost, isliked };
