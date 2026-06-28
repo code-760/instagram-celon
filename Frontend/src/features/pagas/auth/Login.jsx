@@ -7,17 +7,17 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({ username: '', password: '' });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  const handleError = (e) => {
     let valid = true;
     let newErrors = { username: '', password: '' };
 
     // --- USERNAME VALIDATION ---
     if (!username.trim()) {
-      newErrors.username = 'Username is required! ❌';
+      newErrors.username = 'Username is required!';
       valid = false;
     } else if (username !== 'hftr') {
-      newErrors.username = 'Incorrect username! Please check again. ';
+      newErrors.username = 'Incorrect username! Please check again.';
       valid = false;
     }
 
@@ -26,7 +26,7 @@ export default function Login() {
       newErrors.password = 'Password is required!';
       valid = false;
     } else if (password !== '123456') {
-      newErrors.password = 'Incorrect password! Please check again. ';
+      newErrors.password = 'Incorrect password! Please check again.';
       valid = false;
     }
 
@@ -38,6 +38,14 @@ export default function Login() {
       // Aage ka logic (API call wagera) yahan aayega
     }
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    handleError(e);
+  };
+
+  
   return (
     <div className="login-contner">
       <div className="login-semi">
@@ -62,9 +70,12 @@ export default function Login() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className={`user ${errors.username ? 'input-error-border text-red' : ''}`}
-                style={{ color: 'red' }}
               />
-              {errors.username && <span className="error-text">{errors.username}</span>}
+              {errors.username && (
+                <span className="error-text" style={{ color: 'red' }}>
+                  {errors.username}
+                </span>
+              )}
             </label>
             <label htmlFor="">
               Password
@@ -75,7 +86,11 @@ export default function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {errors.password && <span className="error-text">{errors.password}</span>}
+              {errors.password && (
+                <span className="error-text" style={{ color: 'red' }}>
+                  {errors.password}
+                </span>
+              )}
             </label>
             <h6>
               Do you have an account?

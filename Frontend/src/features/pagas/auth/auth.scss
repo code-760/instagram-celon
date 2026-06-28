@@ -85,7 +85,12 @@ height: 100%;
         background-color:rgb(59, 129, 227) ;
         color: whitesmoke;
         border-radius: 14px;
+        border: none;
+        
 
+      }
+      .sing-in:active{
+        scale: 0.98;
       }
         h6{
         font-size: 14px;
@@ -102,3 +107,28 @@ height: 100%;
 
   
 }
+
+@media (min-width: 524px) and (max-width: 1240px) {
+  .login-contner {
+    
+    .login-semi {
+      width: 34rem;
+      h1 {
+        font-size: 3.5rem; /* Tablet ke hisab se font thoda bada */
+      }
+    }
+    .text-conten {
+      form {
+        .user {
+          padding: 14px 20px;
+          font-size: 16px;
+        }
+        .sing-in {
+          padding: 12px 20px;
+          font-size: 22px;
+        }
+      }
+    }
+  }
+}
+
