@@ -1,0 +1,148 @@
+@mixin container-base {
+  height: 100vh;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+}
+
+@mixin semi-layout {
+  height: 100%;
+  padding: 0rem 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 15px;
+
+  h1 {
+    font-size: 4rem;
+    font-family: billabong;
+  }
+}
+
+@mixin text-content-layout {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+
+  .text-login {
+    h2 {
+      padding-bottom: 10px;
+      font-size: 1.8rem;
+    }
+    h3 {
+      font-weight: 400;
+      word-spacing: 1px;
+      letter-spacing: 1px;
+      color: rgb(129, 126, 126);
+    }
+  }
+}
+
+@mixin primary-button {
+  padding: 12px 22px;
+  font-size: 22px;
+  font-weight: 700;
+  background-color: rgb(59, 129, 227);
+  color: whitesmoke;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+
+  &:active {
+    scale: 0.98;
+  }
+}
+
+.login-contner {
+  @include container-base;
+
+  .login-semi {
+    @include semi-layout;
+  }
+
+  .text-conten {
+    @include text-content-layout;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .input-group {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 10px;
+        .user {
+          padding: 15px 22px;
+          font-size: 16px;
+          font-weight: 500;
+          letter-spacing: 1px;
+          background-color: rgb(40, 40, 40);
+          outline: none;
+          border: none;
+          color: white;
+          border-radius: 10px;
+        }
+        .error-msg {
+          color: red;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+      }
+
+      .sing-in {
+        @include primary-button;
+      }
+
+      h6 {
+        font-size: 14px;
+        text-align: center;
+        font-weight: 600;
+
+        a {
+          text-decoration: none;
+          color: rgb(59, 129, 227);
+        }
+      }
+    }
+  }
+}
+
+.Front-contner {
+  @include container-base;
+
+  .Front-semi {
+    @include semi-layout;
+  }
+
+  .text-conten {
+    @include text-content-layout;
+  }
+
+  .lest-setart {
+    text-decoration: none;
+    color: rgb(59, 129, 227);
+    display: inline-block;
+    padding: 12px 40px;
+
+    .sing-in-lest {
+      @include primary-button;
+    }
+  }
+}
